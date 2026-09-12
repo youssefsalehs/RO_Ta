@@ -14,7 +14,7 @@ title: { bsonType: "string", minLength: 1, description: "must be a non-empty str
 });
 
 // 2)
-db.authors.insertOne({ name: "George Orwell", country: "UK" });
+db.authors.insertOne({ name: "George Orwell",nationality:"British"});
 
 // 3)
 db.createCollection("logs", { capped: true, size: 1048576 });
@@ -24,7 +24,7 @@ db.books.createIndex({ title: 1 });
 
 // 5)
 db.books.insertOne({
-title: "1984", author: "George Orwell", year: 1949,
+title: "Book1", author: "Ali", year: 1937,
 genres: ["Dystopian", "Science Fiction"]
 });
 
@@ -37,7 +37,7 @@ db.books.insertMany([
 ]);
 
 // 7)
-db.logs.insertOne({ level: "info", message: "Book added", bookTitle: "Future", timestamp: new Date() });
+db.logs.insertOne({ book_id:"6aa51f917dba20ebe6c4bbcf",action:"borrowed" });
 
 // 8)
 db.books.updateOne({ title: "Future" }, { $set: { year: 2022 } });
