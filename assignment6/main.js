@@ -2,9 +2,9 @@ const dotenv = require("dotenv");
 dotenv.config();
 const PORT = process.env.PORT || 5000;
 const express = require("express");
-const bookRouter = require("./app/book/book.route.js");
-const logRouter = require("./app/log/log.route.js");
-const collectionRouter = require("./app/collection/collection.route.js");
+const bookRouter = require("./src/app/book/book.route.js");
+const logRouter = require("./src/app/log/log.route.js");
+const collectionRouter = require("./src/app/collection/collection.route.js");
 const app = express();
 
 app.use(express.json());
