@@ -1,4 +1,5 @@
 const fs = require("node:fs/promises");
+
 //get all users from the file (db)
 async function getAllUsers() {
   try {
@@ -49,6 +50,12 @@ async function updateUser(userId, updates) {
     parsedUsers[index].name = updates.name;
     updatedField = "name";
   } else if (updates.email !== undefined) {
+    const alreadyExistsIndex = parsedUsers.findIndex(
+      (user) => user.email === updates.email,
+    );
+    if (alreadyExistsIndex !== -1 && alreadyExistsIndex !== index) {
+      return { message: "User Already Exists", statusCode: 400 };
+    }
     parsedUsers[index].email = updates.email;
     updatedField = "email";
   } else if (updates.age !== undefined) {
