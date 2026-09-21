@@ -27,6 +27,14 @@ const createOrUpdateUserService = async (id, data) => {
   const existingUser = await findUserById(id);
 
   if (existingUser) {
+    if (data.email && data.email !== existingUser.email) {
+      const emailTaken = await findUserByEmail(data.email);
+      if (emailTaken) {
+        const error = new Error("Email is already in use");
+        error.status = 400;
+        throw error;
+      }
+    }
     checkPasswordLength(data.password);
     if (data.password) {
       data.password = await bcrypt.hash(data.password, 12);
